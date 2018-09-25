@@ -5,75 +5,55 @@
 //total score is set to 0
 
 $(document).ready(function () {
-    var ranNum;
-    var crystal1;
-    var crystal2;
-    var crystal3;
-    var crystal4;
+    var randNum = 0;
+    var crystalValues = [];
     var wins = 0;
     var losses = 0;
-    var totalScore;
+    var totalScore = 0;
 
-    function generateRanNum() {
-        var num = Math.floor(Math.random() * 102) + 19;
-        return num;
-    }
-    function generateCrystalNum() {
-        var crystalNum = Math.floor(Math.random() * 12) + 1;
-        return crystalNum;
+    function generateRandNum(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    function initializeGame() {
-        ranNum = generateRanNum();
-        $(".randomNumber").text(ranNum);
-        crystal1 = generateCrystalNum();
-        crystal2 = generateCrystalNum();
-        crystal3 = generateCrystalNum();
-        crystal4 = generateCrystalNum();
-        totalScore = 0;
-        console.log(crystal1, crystal2, crystal3, crystal4);
-        $(".win").text(wins);
-        $(".loss").text(losses);
-        $(".total").text(totalScore);
-    }
-
-    function checkScore() {
-        if (totalScore === ranNum) {
+    function checkScore(score, target) {
+        if (score === target) {
             wins++;
             initializeGame();
         }
-        if (totalScore > ranNum) {
+        if (score > target) {
             losses++;
             initializeGame();
         }
     }
 
-    $("#crystal1").on("click", function () {
-        totalScore += crystal1;
-        console.log("Total Score: ", totalScore);
+    function crystalClicked(crystalValue) {
+        return function () {
+            console.log("Total Score: ", totalScore, crystalValue);
+            totalScore += crystalValue;
+            $(".total").text(totalScore);
+            console.log(totalScore, randNum);
+            checkScore(totalScore, randNum);
+        };
+
+    }
+
+    function initializeGame() {
+        randNum = generateRandNum(19, 120);
+        $(".randomNumber").text(randNum);
+        crystalValues = [generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12)];
+        console.log(crystalValues);
+        totalScore = 0;
+        $(".win").text(wins);
+        $(".loss").text(losses);
         $(".total").text(totalScore);
-        checkScore();
-    });
+        for (var i = 0; i < 4; i++) {
+            var crystalId = "#crystal" + (i + 1);
+            var value = crystalValues[i];
+            $(crystalId).off();
+            $(crystalId).on("click", crystalClicked(value));
+        }
 
-    $("#crystal2").on("click", function () {
-        totalScore += crystal2;
-        console.log("Total Score: ", totalScore);
-        $(".total").text(totalScore);
-        checkScore();
-    });
-
-    $("#crystal3").on("click", function () {
-        totalScore += crystal3;
-        console.log("Total Score: ", totalScore);
-        $(".total").text(totalScore);
-        checkScore();
-    });
-
-    $("#crystal4").on("click", function () {
-        totalScore += crystal4;
-        console.log("Total Score: ", totalScore);
-        checkScore();
-    });
+    }
 
 
 
@@ -81,7 +61,10 @@ $(document).ready(function () {
 
 
 
-    $(document).on("pagecontainerload", initializeGame());
+
+
+    initializeGame();
+    //$(document).on("pagecontainerload", initializeGame());
 
     //clicking on each of the crystals should inrement totalScore by its value as long as totalScore is less than 39. If totalScore is less than 39, user is allowed to guess again,if totalScore is equal to 39 or greater its either a win or a loss, updates the win/loss count and starts game over
 
