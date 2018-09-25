@@ -37,10 +37,7 @@ $(document).ready(function () {
         $(".total").text(totalScore);
     }
 
-    $("#crystal1").on("click", function () {
-        totalScore += crystal1;
-        console.log("Total Score: ", totalScore);
-        $(".total").text(totalScore);
+    function checkScore() {
         if (totalScore === ranNum) {
             wins++;
             initializeGame();
@@ -49,48 +46,33 @@ $(document).ready(function () {
             losses++;
             initializeGame();
         }
+    }
+
+    $("#crystal1").on("click", function () {
+        totalScore += crystal1;
+        console.log("Total Score: ", totalScore);
+        $(".total").text(totalScore);
+        checkScore();
     });
 
     $("#crystal2").on("click", function () {
         totalScore += crystal2;
         console.log("Total Score: ", totalScore);
         $(".total").text(totalScore);
-        if (totalScore === ranNum) {
-            wins++;
-            initializeGame();
-        }
-        if (totalScore > ranNum) {
-            losses++;
-            initializeGame();
-        }
+        checkScore();
     });
 
     $("#crystal3").on("click", function () {
         totalScore += crystal3;
         console.log("Total Score: ", totalScore);
         $(".total").text(totalScore);
-        if (totalScore === ranNum) {
-            wins++;
-            initializeGame();
-        }
-        if (totalScore > ranNum) {
-            losses++;
-            initializeGame();
-        }
+        checkScore();
     });
 
     $("#crystal4").on("click", function () {
         totalScore += crystal4;
         console.log("Total Score: ", totalScore);
-        $(".total").text(totalScore);
-        if (totalScore === ranNum) {
-            wins++;
-            initializeGame();
-        }
-        if (totalScore > ranNum) {
-            losses++;
-            initializeGame();
-        }
+        checkScore();
     });
 
 
