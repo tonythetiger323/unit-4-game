@@ -5,6 +5,15 @@
 //total score is set to 0
 
 $(document).ready(function () {
+    var ranNum;
+    var crystal1;
+    var crystal2;
+    var crystal3;
+    var crystal4;
+    var wins = 0;
+    var losses = 0;
+    var totalScore;
+
     function generateRanNum() {
         var num = Math.floor(Math.random() * 102) + 19;
         return num;
@@ -13,20 +22,86 @@ $(document).ready(function () {
         var crystalNum = Math.floor(Math.random() * 12) + 1;
         return crystalNum;
     }
+
     function initializeGame() {
-        var ranNum = generateRanNum();
+        ranNum = generateRanNum();
         $(".randomNumber").text(ranNum);
-        var crystal1 = generateCrystalNum();
-        var crystal2 = generateCrystalNum();
-        var crystal3 = generateCrystalNum();
-        var crystal4 = generateCrystalNum();
-        var wins = 0;
+        crystal1 = generateCrystalNum();
+        crystal2 = generateCrystalNum();
+        crystal3 = generateCrystalNum();
+        crystal4 = generateCrystalNum();
+        totalScore = 0;
+        console.log(crystal1, crystal2, crystal3, crystal4);
         $(".win").text(wins);
-        var losses = 0;
         $(".loss").text(losses);
-        var totalScore = 0;
-        $(".total").text(totalScore)
+        $(".total").text(totalScore);
     }
 
+    $("#crystal1").on("click", function () {
+        totalScore += crystal1;
+        console.log("Total Score: ", totalScore);
+        $(".total").text(totalScore);
+        if (totalScore === ranNum) {
+            wins++;
+            initializeGame();
+        }
+        if (totalScore > ranNum) {
+            losses++;
+            initializeGame();
+        }
+    });
+
+    $("#crystal2").on("click", function () {
+        totalScore += crystal2;
+        console.log("Total Score: ", totalScore);
+        $(".total").text(totalScore);
+        if (totalScore === ranNum) {
+            wins++;
+            initializeGame();
+        }
+        if (totalScore > ranNum) {
+            losses++;
+            initializeGame();
+        }
+    });
+
+    $("#crystal3").on("click", function () {
+        totalScore += crystal3;
+        console.log("Total Score: ", totalScore);
+        $(".total").text(totalScore);
+        if (totalScore === ranNum) {
+            wins++;
+            initializeGame();
+        }
+        if (totalScore > ranNum) {
+            losses++;
+            initializeGame();
+        }
+    });
+
+    $("#crystal4").on("click", function () {
+        totalScore += crystal4;
+        console.log("Total Score: ", totalScore);
+        $(".total").text(totalScore);
+        if (totalScore === ranNum) {
+            wins++;
+            initializeGame();
+        }
+        if (totalScore > ranNum) {
+            losses++;
+            initializeGame();
+        }
+    });
+
+
+
+
+
+
+
     $(document).on("pagecontainerload", initializeGame());
-})
+
+    //clicking on each of the crystals should inrement totalScore by its value as long as totalScore is less than 39. If totalScore is less than 39, user is allowed to guess again,if totalScore is equal to 39 or greater its either a win or a loss, updates the win/loss count and starts game over
+
+
+});
