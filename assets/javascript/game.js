@@ -35,7 +35,7 @@ $(document).ready(function () {
         $(crystalId).off();
         $(crystalId).on("click", function (e) { crystalClicked(crystalValue) });
     }
-    function initializeGame() {
+    function initializeGame()"game.js" {
         randNum = generateRandNum(19, 120);
         $(".randomNumber").text(randNum);
         crystalValues = [generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12)];
