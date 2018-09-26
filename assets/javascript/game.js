@@ -27,16 +27,19 @@ $(document).ready(function () {
     }
 
     function crystalClicked(crystalValue) {
-        return function () {
-            console.log("Total Score: ", totalScore, crystalValue);
-            totalScore += crystalValue;
-            $(".total").text(totalScore);
-            console.log(totalScore, randNum);
-            checkScore(totalScore, randNum);
-        };
+
+        console.log("Total Score: ", totalScore, crystalValue);
+        totalScore += crystalValue;
+        $(".total").text(totalScore);
+        console.log(totalScore, randNum);
+        checkScore(totalScore, randNum);
+
 
     }
-
+    function handleCrystalButtonClick(crystalId, crystalValue) {
+        $(crystalId).off();
+        $(crystalId).on("click", function (e) { crystalClicked(crystalValue) });
+    }
     function initializeGame() {
         randNum = generateRandNum(19, 120);
         $(".randomNumber").text(randNum);
@@ -46,13 +49,11 @@ $(document).ready(function () {
         $(".win").text(wins);
         $(".loss").text(losses);
         $(".total").text(totalScore);
-        for (var i = 0; i < 4; i++) {
-            var crystalId = "#crystal" + (i + 1);
-            var value = crystalValues[i];
-            $(crystalId).off();
-            $(crystalId).on("click", crystalClicked(value));
-        }
 
+        handleCrystalButtonClick("#crystal1", crystalValues[0]);
+        handleCrystalButtonClick("#crystal2", crystalValues[1]);
+        handleCrystalButtonClick("#crystal3", crystalValues[2]);
+        handleCrystalButtonClick("#crystal4", crystalValues[3]);
     }
 
 
@@ -64,7 +65,6 @@ $(document).ready(function () {
 
 
     initializeGame();
-    //$(document).on("pagecontainerload", initializeGame());
 
     //clicking on each of the crystals should inrement totalScore by its value as long as totalScore is less than 39. If totalScore is less than 39, user is allowed to guess again,if totalScore is equal to 39 or greater its either a win or a loss, updates the win/loss count and starts game over
 
