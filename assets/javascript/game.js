@@ -4,7 +4,6 @@ $(document).ready(function () {
     var wins = 0;
     var losses = 0;
     var totalScore = 0;
-    var myMusic;
 
     function generateRandNum(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -31,8 +30,6 @@ $(document).ready(function () {
         $(crystalId).on("click", function (e) { crystalClicked(crystalValue) });
     }
     function initializeGame() {
-        myMusic = new sound("../audio/IndianaJonesTheme.mp3");
-        myMusic.play();
         randNum = generateRandNum(19, 120);
         $(".randomNumber").text(randNum);
         crystalValues = [generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12)];
@@ -46,6 +43,5 @@ $(document).ready(function () {
         handleCrystalButtonClick("#crystal3", crystalValues[2]);
         handleCrystalButtonClick("#crystal4", crystalValues[3]);
     }
-
     initializeGame();
 });
