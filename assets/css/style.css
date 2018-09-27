@@ -1,0 +1,11 @@
+body{
+    background-image: url("../images/background.jpg");
+}
+
+.crystals{
+    opacity: 0.5;
+}
+
+.card{
+    opacity: 0.5;
+}

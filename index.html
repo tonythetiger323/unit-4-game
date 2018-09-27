@@ -8,34 +8,71 @@
     <title>Crystal Collector!</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
 </head>
 
 <body>
-    <header>Crytal Collector!</header>
-    <div class="directions">
-        <p>You will be given a random number at the start of the game.</p>
-        <p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your
-            total score.</p>
-        <p>You win the game by matching your total score to the random number. You lost the game if your total score
-            goes above the random number.</p>
-        <p>The value of each crystal is hidden from you until you click on it.</p>
-    </div>
-    <div class="row">
-        <div class="randomNumber"></div>
-        <div class="winLoss">
-            <p>Wins: <span class="win"></span></p>
-            <p>Losses: <span class="loss"></span></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 card" id="card1">
+                <div class="card-bod h1">
+                    Crystal Collector!!!
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 directions card" id="card2">
+                <div class="card-body">
+                    <p>You will be given a random number at the start of the game.</p>
+                    <p>There are four crystals below. By clicking on a crystal you will add a specific amount of
+                        points
+                        to
+                        your
+                        total score.</p>
+                    <p>You win the game by matching your total score to the random number. You lost the game if
+                        your
+                        total
+                        score
+                        goes above the random number.</p>
+                    <p>The value of each crystal is hidden from you until you click on it.</p>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 card" id="card3">
+                <div class="card-body randomNumber"></div>
+            </div>
+            <div class="col-md-3 card winLoss" id="card3">
+                <div class="card-body">
+                    <p>Wins: <span class="win"></span></p>
+                    <p>Losses: <span class="loss"></span></p>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button id="crystal1" class="crystals"><img src="assets/images/crystal1.png" /></button>
+                <button id="crystal2" class="crystals"><img src="assets/images/crystal2.png" /></button>
+                <button id="crystal3" class="crystals"><img src="assets/images/crystal3.png" /></button>
+                <button id="crystal4" class="crystals"><img src="assets/images/crystal4.png" /></button>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 card" id="card4">
+                <div class="card-body">
+                    <h5 class="card-title">Your total score is:</h5>
+                    <div class="card-text total"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="crystals">
-        <button id="crystal1"><img src="assets/images/crystal1.png" /></button>
-        <button id="crystal2"><img src="assets/images/crystal2.png" /></button>
-        <button id="crystal3"><img src="assets/images/crystal3.png" /></button>
-        <button id="crystal4"><img src="assets/images/crystal4.png" /></button>
     </div>
-    <p>Your total score is:</p>
-    <div class="total">Total score goes here</div>
-
     <script src='https://code.jquery.com/jquery-3.3.1.min.js' integrity='sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
         crossorigin='anonymous'></script>
     <script src="assets/javascript/game.js"></script>
