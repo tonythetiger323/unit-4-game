@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
     function handleCrystalButtonClick(crystalId, crystalValue) {
         $(crystalId).off();
-        $(crystalId).on("click", function (e) { crystalClicked(crystalValue); });
+        $(crystalId).on("click", function (e) { crystalClicked(crystalValue) });
     }
     function initializeGame() {
         myMusic = new sound("../audio/IndianaJonesTheme.mp3");
