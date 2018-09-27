@@ -1,15 +1,10 @@
-//When game starts
-//Random number between 19-120 to try to match is generated and written to div.randomNumber
-//Wins and losses counters are both set to 0
-//A different random number between 1-12 is generated and assigned to each of the 4 crystals
-//total score is set to 0
-
 $(document).ready(function () {
     var randNum = 0;
     var crystalValues = [];
     var wins = 0;
     var losses = 0;
     var totalScore = 0;
+    var myMusic;
 
     function generateRandNum(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -33,9 +28,11 @@ $(document).ready(function () {
     }
     function handleCrystalButtonClick(crystalId, crystalValue) {
         $(crystalId).off();
-        $(crystalId).on("click", function (e) { crystalClicked(crystalValue) });
+        $(crystalId).on("click", function (e) { crystalClicked(crystalValue); });
     }
     function initializeGame() {
+        myMusic = new sound("../audio/IndianaJonesTheme.mp3");
+        myMusic.play();
         randNum = generateRandNum(19, 120);
         $(".randomNumber").text(randNum);
         crystalValues = [generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12), generateRandNum(1, 12)];
@@ -49,5 +46,6 @@ $(document).ready(function () {
         handleCrystalButtonClick("#crystal3", crystalValues[2]);
         handleCrystalButtonClick("#crystal4", crystalValues[3]);
     }
+
     initializeGame();
 });
